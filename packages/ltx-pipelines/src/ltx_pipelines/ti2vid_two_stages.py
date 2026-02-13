@@ -56,6 +56,7 @@ class TI2VidTwoStagesPipeline:
         loras: list[LoraPathStrengthAndSDOps],
         device: str = device,
         quantization: QuantizationPolicy | None = None,
+        cache_models: bool = False,
     ):
         self.device = device
         self.dtype = torch.bfloat16
@@ -67,6 +68,7 @@ class TI2VidTwoStagesPipeline:
             spatial_upsampler_path=spatial_upsampler_path,
             loras=loras,
             quantization=quantization,
+            cache_models=cache_models,
         )
 
         self.stage_2_model_ledger = self.stage_1_model_ledger.with_loras(
